@@ -2,7 +2,7 @@ const currentDay = $('#currentDay');
 const timeBlockCont = $('.SchedContainer');
 
 //function to check which class and time prefix to add
-function getCurrentHour(func, i) {
+function getHour(func, i) {
 
     //check class for text input area
     if (func == 'class') {
@@ -45,11 +45,11 @@ function generateTimeBlocks() {
         //Add classes
         timeBlock.addClass('timeBlock');
         hour.addClass('hour');
-        textArea.addClass(getCurrentHour('class', i));
-        saveBtn.addClass('saveBtn');
-        icon.addClass('fa fa-cloud-upload-alt');
+        textArea.addClass(getHour('class', i));
+        saveBtn.addClass('saveBtn clickEvent');
+        icon.addClass('fa fa-cloud-upload-alt clickEvent');
         //append to page
-        hour.text(time + getCurrentHour('prefix', i))
+        hour.text(time + getHour('prefix', i))
         saveBtn.append(icon);
         timeBlock.append(hour).append(textArea).append(saveBtn);
         timeBlockCont.append(timeBlock);
@@ -62,3 +62,9 @@ function generateTimeBlocks() {
 currentDay.text(moment().format('dddd, Do YYYY'));
 //Generate TimeBlocks
 generateTimeBlocks();
+
+timeBlockCont.on('click',function(e){
+    if(e.target.classList.contains('clickEvent')){
+        console.log('yes')
+    }
+})
