@@ -3,15 +3,106 @@ body {
   font-size: 16px;
   line-height: 1;
 }
-
-textarea {
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
+.timeBlock{
+  display: grid;
+  grid-template-columns: 100px auto 100px;
+  grid-template-areas: 
+    "time text-area btn";
+    
 }
+.timeBlock > *{
+  min-height: 80px;
+  color: black;
+  padding: 10px;
+  margin-bottom: 1px;
+}
+
+.hour{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  grid-area: time;
+}
+.past {
+  background-color: #d3d3d3;
+}
+
+.present {
+  background-color: #ff6961;
+}
+
+.future {
+  background-color: #77dd77;
+}
+
+.saveBtn {
+  border-left: 1px solid black;
+  background-color: #06aed5;
+  color: white;
+}
+.event-area{
+  grid-area: text-area;
+  resize: none;
+  border: none;  
+  cursor: pointer;
+  border: 1px solid transparent;
+
+}
+.event-area:hover{
+  border: 1px solid black;
+  border-right: none;
+}
+.event-area:focus{
+  outline: none !important;
+  border: 2px solid black;
+  border-right: 1px;
+}
+.saveBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: btn;
+  cursor: pointer;
+  font-size: 20px;
+  
+}
+i{
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.saveBtn:hover > i{
+  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  
+}
+.SchedContainer{
+  margin-top: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .jumbotron {
   text-align: center;
@@ -19,16 +110,13 @@ textarea {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  margin-bottom: 0;
 }
 
 .description {
   white-space: pre-wrap;
 }
 
-.time-block {
-  text-align: center;
-  border-radius: 15px;
-}
 
 .row {
   white-space: pre-wrap;
@@ -44,28 +132,20 @@ textarea {
 
 .past {
   background-color: #d3d3d3;
-  color: white;
 }
 
 .present {
   background-color: #ff6961;
-  color: white;
 }
 
 .future {
   background-color: #77dd77;
-  color: white;
 }
 
 .saveBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
 }
 
-.saveBtn i:hover {
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
-}
+
