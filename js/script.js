@@ -155,7 +155,7 @@ timeBlockCont.on('click', function (e) {
         //show feedback
         feedback.text(event + timeSlot);
         feedback.animate({
-            height: '35px',
+            height: '40px',
             duration: 500
         });
         setTimeout(function () {

@@ -107,7 +107,7 @@ i{
   align-items: center;
   justify-content: center;
   position: fixed;
-  bottom: 0;
+  top: 0;
   color: white;
   right: calc(50% - 100px);
   width: 220px;
@@ -115,9 +115,9 @@ i{
   overflow: hidden;
   background-color: #23c023;
   box-shadow: rgba(0, 0, 0, 0.24) 0px -3px 10px;
-  border-radius: 2rem 2rem 0 0;
-  -webkit-border-radius: 2rem 2rem 0 0;
-  -moz-border-radius: 2rem 2rem 0 0;
+  border-radius: 0 0 2rem 2rem;
+  -webkit-border-radius: 0 0 2rem 2rem;
+  -moz-border-radius: 0 0 2rem 2rem;
   -ms-border-radius: 2rem 2rem 0 0;
   -o-border-radius: 2rem 2rem 0 0;
 }
