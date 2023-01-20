@@ -66,8 +66,18 @@ function saveToCalender(timeSlot, text){
     //check if data in local storage and return it if so
     let data = checkLocalStorage('save');
     if(data != null){
+        let test = false;
         //add new event to already stored data
-        data.push(event);
+        for (i = 1; i < data.length; i++) {
+            if(data[i].time == event.time){
+                data[i].entry = event.entry;
+                test = true;
+            }
+        } 
+        if(!test){
+            data.push(event);
+        }
+        
     } else {
         //or just add new event
         data = [
@@ -113,8 +123,10 @@ function checkLocalStorage(type){
 
 }
 //function to retrive calender event from localStorage
-function populateFromLocalStorage(){
-
+function populateFromLocalStorage(data){
+    for (i = 1; i < data.length; i++) {
+        $('textarea[data-time='+data[i].time+']').val(data[i].entry);
+    };
 
 }
 //Set header Current Day
@@ -124,11 +136,10 @@ generateTimeBlocks();
 checkLocalStorage();
 //listen for request to save
 timeBlockCont.on('click',function(e){
-    
     if(e.target.classList.contains('clickEvent')){
         let timeSlot = e.target.dataset.time;
         let entry = $('textarea[data-time='+timeSlot+']').val();
-        console.log(entry);
         saveToCalender(timeSlot, entry);
     }
+
 })
