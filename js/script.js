@@ -1,6 +1,5 @@
 const currentDay = $('#currentDay');
 const timeBlockCont = $('.SchedContainer');
-var localStorageData = '';
 const currentDate = moment().format('dddd, Do MMMM YYYY');
 const current = moment().hours();
 const feedback = $('#feedback');
