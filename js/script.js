@@ -65,15 +65,17 @@ function saveToCalender(timeSlot, text){
     
     //check if data in local storage and return it if so
     let data = checkLocalStorage('save');
+    //add new event to already stored data
     if(data != null){
+        //check if entry for timeslot exists
         let test = false;
-        //add new event to already stored data
         for (i = 1; i < data.length; i++) {
             if(data[i].time == event.time){
                 data[i].entry = event.entry;
                 test = true;
             }
         } 
+        //if not push new time slot data
         if(!test){
             data.push(event);
         }
@@ -122,7 +124,7 @@ function checkLocalStorage(type){
     
 
 }
-//function to retrive calender event from localStorage
+//function to populate text fields from storage
 function populateFromLocalStorage(data){
     for (i = 1; i < data.length; i++) {
         $('textarea[data-time='+data[i].time+']').val(data[i].entry);
