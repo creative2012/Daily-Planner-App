@@ -64,7 +64,7 @@ function saveToCalender(timeSlot, text) {
         time: timeSlot,
         entry: text
     }
-
+    var action = '';
     //check if data in local storage and return it if so
     let data = checkLocalStorage('save');
     //add new event to already stored data
@@ -72,14 +72,25 @@ function saveToCalender(timeSlot, text) {
         //check if entry for timeslot exists
         let test = false;
         for (i = 1; i < data.length; i++) {
-            if (data[i].time == event.time) {
-                data[i].entry = event.entry;
+            let eventData = data[i];
+            if (eventData.time == event.time) {
+                //check if we are updating or saving
+                console.log(eventData.entry)
+               if(eventData.entry == '') {
+                action ='Saved event for';
+                } else{
+                   action = 'Updated event for ';
+                }
+                
+                eventData.entry = event.entry;
                 test = true;
             }
+            
         }
         //if not push new time slot data
         if (!test) {
             data.push(event);
+            action = 'Saved event for ';
         }
 
     } else {
@@ -88,9 +99,11 @@ function saveToCalender(timeSlot, text) {
             currentDate,
             event
         ]
+        action = 'Saved event for ';
     }
     //save to local storage
     localStorage.setItem('calender', JSON.stringify(data));
+    return action;
 
 }
 //function to check local storage data
@@ -143,20 +156,22 @@ timeBlockCont.on('click', function (e) {
         let timeSlot = e.target.dataset.time;
         let textArea = $('textarea[data-time=' + timeSlot + ']');
         let entry = textArea.val();
-        saveToCalender(timeSlot, entry);
+        let event = saveToCalender(timeSlot, entry);
+        //check if clearing event entry
+        if(entry == '') event = 'Cleared event for '
         //show feedback
-        feedback.text('Saved event for ' + timeSlot);
+        feedback.text(event + timeSlot);
         feedback.animate({
             height: '35px',
             duration: 500
-        }).done(
-            setTimeout(function () {
-                feedback.animate({
-                    height: '0',
-                    duration: 500
-                })
-            }, 1500)
-        );
+        });
+        setTimeout(function () {
+            feedback.animate({
+                height: '0',
+                duration: 500
+            })
+        }, 1500);
+        
     } else {
         return;
     }
