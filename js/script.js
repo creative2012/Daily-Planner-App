@@ -74,16 +74,16 @@ function saveToCalender(timeSlot, text) {
             let eventData = data[i];
             if (eventData.time == event.time) {
                 //check if we are updating or saving
-               if(eventData.entry == '') {
-                action ='Saved event for';
-                } else{
-                   action = 'Updated event for ';
+                if (eventData.entry == '') {
+                    action = 'Saved event for';
+                } else {
+                    action = 'Updated event for ';
                 }
-                
+
                 eventData.entry = event.entry;
                 test = true;
             }
-            
+
         }
         //if not push new time slot data
         if (!test) {
@@ -156,7 +156,7 @@ timeBlockCont.on('click', function (e) {
         let entry = textArea.val();
         let event = saveToCalender(timeSlot, entry);
         //check if clearing event entry
-        if(entry == '') event = 'Cleared event for '
+        if (entry == '') event = 'Cleared event for '
         //show feedback
         feedback.text(event + timeSlot);
         feedback.animate({
@@ -169,7 +169,7 @@ timeBlockCont.on('click', function (e) {
                 duration: 500
             })
         }, 1500);
-        
+
     } else {
         return;
     }
