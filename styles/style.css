@@ -3,6 +3,23 @@ body {
   font-size: 16px;
   line-height: 1;
 }
+/* header */
+.SchedContainer{
+  margin-top: 2px;
+}
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border-bottom: 10px solid black;
+  margin-bottom: 0;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+/* Time slots */
 .timeBlock{
   display: grid;
   grid-template-columns: 100px auto 100px;
@@ -16,30 +33,18 @@ body {
   padding: 10px;
   margin-bottom: 1px;
 }
-
+/* hour field */
 .hour{
   display: flex;
   align-items: center;
   justify-content: right;
   grid-area: time;
-}
-.past {
-  background-color: #d3d3d3;
-}
-
-.present {
-  background-color: #ff6961;
+  background-color: #ffffff;
+  color: #000000;
+  border-top: 1px dashed #000000;
 }
 
-.future {
-  background-color: #77dd77;
-}
-
-.saveBtn {
-  border-left: 1px solid black;
-  background-color: #06aed5;
-  color: white;
-}
+/* Textfield */
 .event-area{
   grid-area: text-area;
   resize: none;
@@ -57,6 +62,18 @@ body {
   border: 2px solid black;
   border-right: 1px;
 }
+.past {
+  background-color: #d3d3d3;
+}
+
+.present {
+  background-color: #ff6961;
+}
+
+.future {
+  background-color: #77dd77;
+}
+/* save button */
 .saveBtn{
   display: flex;
   align-items: center;
@@ -64,6 +81,9 @@ body {
   grid-area: btn;
   cursor: pointer;
   font-size: 20px;
+  border-left: 1px solid black;
+  background-color: #06aed5;
+  color: white;
   
 }
 i{
@@ -81,71 +101,3 @@ i{
   -o-transform: scale(1.5);
   
 }
-.SchedContainer{
-  margin-top: 2px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.jumbotron {
-  text-align: center;
-  background-color: transparent;
-  color: black;
-  border-radius: 0;
-  border-bottom: 10px solid black;
-  margin-bottom: 0;
-}
-
-.description {
-  white-space: pre-wrap;
-}
-
-
-.row {
-  white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;
-}
-
-.hour {
-  background-color: #ffffff;
-  color: #000000;
-  border-top: 1px dashed #000000;
-}
-
-.past {
-  background-color: #d3d3d3;
-}
-
-.present {
-  background-color: #ff6961;
-}
-
-.future {
-  background-color: #77dd77;
-}
-
-.saveBtn {
-  border-left: 1px solid black;
-  background-color: #06aed5;
-  color: white;
-}
-
-

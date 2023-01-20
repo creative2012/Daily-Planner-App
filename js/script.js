@@ -8,16 +8,16 @@ const current = moment().hours();
 function getHourClass(i) {
 
     //check class for text input area
-        let className = 'event-area';
+    let className = 'event-area';
 
-        if (i < current) {
-            className += ' past';
-        } else if (i == current) {
-            className += ' present';
-        } else {
-            className += ' future';
-        }
-        return className;
+    if (i < current) {
+        className += ' past';
+    } else if (i == current) {
+        className += ' present';
+    } else {
+        className += ' future';
+    }
+    return className;
 
 }
 //Function to generate time blocks
@@ -49,7 +49,7 @@ function generateTimeBlocks() {
         saveBtn.append(icon);
         timeBlock.append(hour).append(textArea).append(saveBtn);
         timeBlockCont.append(timeBlock);
-        
+
         time < 12 ? time++ : time = 1;
     }
     //populate fields if local storage data available
@@ -57,29 +57,29 @@ function generateTimeBlocks() {
 
 }
 //function to save calender event
-function saveToCalender(timeSlot, text){
+function saveToCalender(timeSlot, text) {
     let event = {
         time: timeSlot,
         entry: text
     }
-    
+
     //check if data in local storage and return it if so
     let data = checkLocalStorage('save');
     //add new event to already stored data
-    if(data != null){
+    if (data != null) {
         //check if entry for timeslot exists
         let test = false;
         for (i = 1; i < data.length; i++) {
-            if(data[i].time == event.time){
+            if (data[i].time == event.time) {
                 data[i].entry = event.entry;
                 test = true;
             }
-        } 
+        }
         //if not push new time slot data
-        if(!test){
+        if (!test) {
             data.push(event);
         }
-        
+
     } else {
         //or just add new event
         data = [
@@ -92,14 +92,14 @@ function saveToCalender(timeSlot, text){
 
 }
 //function to check local storage data
-function checkLocalStorage(type){
+function checkLocalStorage(type) {
     //check if calender data available for current day
     let data = JSON.parse(localStorage.getItem('calender'));
     //logic to populate from data
-    if(type == "populate"){
+    if (type == "populate") {
         if (data != null) {
             //if not same day, remove key 
-            if(data[0] != currentDate){
+            if (data[0] != currentDate) {
                 localStorage.removeItem('calender');
                 return;
             }
@@ -109,7 +109,7 @@ function checkLocalStorage(type){
         }
     }
     //logic to check if localStorage data avaialble
-    if(type == "save"){
+    if (type == "save") {
         //if data available add to array and return
         if (data != null) {
             let events = [];
@@ -122,12 +122,11 @@ function checkLocalStorage(type){
         return null;
     }
     
-
 }
 //function to populate text fields from storage
-function populateFromLocalStorage(data){
+function populateFromLocalStorage(data) {
     for (i = 1; i < data.length; i++) {
-        $('textarea[data-time='+data[i].time+']').val(data[i].entry);
+        $('textarea[data-time=' + data[i].time + ']').val(data[i].entry);
     };
 
 }
@@ -137,11 +136,13 @@ currentDay.text(currentDate);
 generateTimeBlocks();
 checkLocalStorage();
 //listen for request to save
-timeBlockCont.on('click',function(e){
-    if(e.target.classList.contains('clickEvent')){
+timeBlockCont.on('click', function (e) {
+    if (e.target.classList.contains('clickEvent')) {
         let timeSlot = e.target.dataset.time;
-        let entry = $('textarea[data-time='+timeSlot+']').val();
+        let entry = $('textarea[data-time=' + timeSlot + ']').val();
         saveToCalender(timeSlot, entry);
+    } else {
+        return;
     }
 
 })
