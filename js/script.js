@@ -37,9 +37,12 @@ function generateTimeBlocks() {
         timeBlock.addClass('timeBlock');
         hour.addClass('hour');
         textArea.addClass(getHourClass(i));
-        textArea.attr('data-time', time);
         saveBtn.addClass('saveBtn clickEvent');
         icon.addClass('fa fa-cloud-upload-alt clickEvent');
+        //add data attribute
+        textArea.attr('data-time', time);
+        saveBtn.attr('data-time', time);
+        icon.attr('data-time', time);
         //append to page
         let hourText = i < 3 ? 'AM' : 'PM';
         hour.text(time + hourText)
@@ -54,11 +57,12 @@ function generateTimeBlocks() {
 
 }
 //function to save calender event
-function saveToCalender(timeSlot, entry){
+function saveToCalender(timeSlot, text){
     let event = {
         time: timeSlot,
-        entry: entry
-    };
+        entry: text
+    }
+    
     //check if data in local storage and return it if so
     let data = checkLocalStorage('save');
     if(data != null){
@@ -66,7 +70,10 @@ function saveToCalender(timeSlot, entry){
         data.push(event);
     } else {
         //or just add new event
-        data = event;
+        data = [
+            currentDate,
+            event
+        ]
     }
     //save to local storage
     localStorage.setItem('calender', JSON.stringify(data));
@@ -80,7 +87,7 @@ function checkLocalStorage(type){
     if(type == "populate"){
         if (data != null) {
             //if not same day, remove key 
-            if(data.date != currentDate){
+            if(data[0] != currentDate){
                 localStorage.removeItem('calender');
                 return;
             }
@@ -95,7 +102,7 @@ function checkLocalStorage(type){
         if (data != null) {
             let events = [];
             data.forEach(function (item) {
-                toStorage.push(item);
+                events.push(item);
             });
             return events;
         }
@@ -119,10 +126,9 @@ checkLocalStorage();
 timeBlockCont.on('click',function(e){
     
     if(e.target.classList.contains('clickEvent')){
-        let target = $(this).parent();
-        console.log(target);
-        let timeSlot = target.childern('data-time').value;
-        let entry = target.childern('.event-area').value;
+        let timeSlot = e.target.dataset.time;
+        let entry = $('textarea[data-time='+timeSlot+']').val();
+        console.log(entry);
         saveToCalender(timeSlot, entry);
     }
 })
