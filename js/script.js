@@ -6,14 +6,14 @@ const current = moment().hours();
 const feedback = $('#feedback');
 
 //function to check which class to add
-function getHourClass(i) {
+function getHourClass(hour) {
 
     //check class for text input area
     let className = 'event-area';
 
-    if (i < current) {
+    if (hour < current) {
         className += ' past';
-    } else if (i == current) {
+    } else if (hour == current) {
         className += ' present';
     } else {
         className += ' future';
