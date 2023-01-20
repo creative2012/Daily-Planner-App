@@ -101,3 +101,24 @@ i{
   -o-transform: scale(1.5);
   
 }
+/* feedback container */
+#feedback{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  color: white;
+  right: calc(50% - 100px);
+  width: 200px;
+  height: 0px;
+  overflow: hidden;
+  background-color: #23c023;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px -3px 10px;
+  border-radius: 2rem 2rem 0 0;
+  -webkit-border-radius: 2rem 2rem 0 0;
+  -moz-border-radius: 2rem 2rem 0 0;
+  -ms-border-radius: 2rem 2rem 0 0;
+  -o-border-radius: 2rem 2rem 0 0;
+}
+  

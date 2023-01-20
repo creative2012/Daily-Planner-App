@@ -3,6 +3,7 @@ const timeBlockCont = $('.SchedContainer');
 var localStorageData = '';
 const currentDate = moment().format('dddd, Do MMMM YYYY');
 const current = moment().hours();
+const feedback = $('#feedback');
 
 //function to check which class to add
 function getHourClass(i) {
@@ -40,11 +41,12 @@ function generateTimeBlocks() {
         saveBtn.addClass('saveBtn clickEvent');
         icon.addClass('fa fa-cloud-upload-alt clickEvent');
         //add data attribute
-        textArea.attr('data-time', time);
-        saveBtn.attr('data-time', time);
-        icon.attr('data-time', time);
-        //append to page
         let hourText = i < 3 ? 'AM' : 'PM';
+        textArea.attr('data-time', time + hourText);
+        saveBtn.attr('data-time', time + hourText);
+        icon.attr('data-time', time + hourText);
+        //append to page
+
         hour.text(time + hourText)
         saveBtn.append(icon);
         timeBlock.append(hour).append(textArea).append(saveBtn);
@@ -121,7 +123,7 @@ function checkLocalStorage(type) {
         //if no data in local storage
         return null;
     }
-    
+
 }
 //function to populate text fields from storage
 function populateFromLocalStorage(data) {
@@ -139,8 +141,22 @@ checkLocalStorage();
 timeBlockCont.on('click', function (e) {
     if (e.target.classList.contains('clickEvent')) {
         let timeSlot = e.target.dataset.time;
-        let entry = $('textarea[data-time=' + timeSlot + ']').val();
+        let textArea = $('textarea[data-time=' + timeSlot + ']');
+        let entry = textArea.val();
         saveToCalender(timeSlot, entry);
+        //show feedback
+        feedback.text('Saved event for ' + timeSlot);
+        feedback.animate({
+            height: '35px',
+            duration: 500
+        }).done(
+            setTimeout(function () {
+                feedback.animate({
+                    height: '0',
+                    duration: 500
+                })
+            }, 1500)
+        );
     } else {
         return;
     }
