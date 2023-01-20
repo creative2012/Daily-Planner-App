@@ -75,7 +75,6 @@ function saveToCalender(timeSlot, text) {
             let eventData = data[i];
             if (eventData.time == event.time) {
                 //check if we are updating or saving
-                console.log(eventData.entry)
                if(eventData.entry == '') {
                 action ='Saved event for';
                 } else{
