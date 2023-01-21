@@ -9,7 +9,8 @@ function getHourClass(hour) {
 
     //check class for text input area
     let className = 'event-area';
-
+    console.log(hour);
+    console.log(current);
     if (hour < current) {
         className += ' past';
     } else if (hour == current) {
@@ -24,6 +25,7 @@ function getHourClass(hour) {
 function generateTimeBlocks() {
 
     let time = 9;
+    let check =9;
 
     for (var i = 0; i < 9; i++) {
 
@@ -36,7 +38,7 @@ function generateTimeBlocks() {
         //Add classes
         timeBlock.addClass('timeBlock');
         hour.addClass('hour');
-        textArea.addClass(getHourClass(time));
+        textArea.addClass(getHourClass(check));
         saveBtn.addClass('saveBtn clickEvent');
         icon.addClass('fa fa-cloud-upload-alt clickEvent');
         //add data attribute
@@ -52,6 +54,7 @@ function generateTimeBlocks() {
         timeBlockCont.append(timeBlock);
 
         time < 12 ? time++ : time = 1;
+        check++;
     }
     //populate fields if local storage data available
     checkLocalStorage('populate');
