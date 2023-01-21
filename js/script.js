@@ -36,7 +36,7 @@ function generateTimeBlocks() {
         //Add classes
         timeBlock.addClass('timeBlock');
         hour.addClass('hour');
-        textArea.addClass(getHourClass(i));
+        textArea.addClass(getHourClass(time));
         saveBtn.addClass('saveBtn clickEvent');
         icon.addClass('fa fa-cloud-upload-alt clickEvent');
         //add data attribute
