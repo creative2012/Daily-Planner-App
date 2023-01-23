@@ -145,7 +145,6 @@ function populateFromLocalStorage(data) {
 currentDay.text(currentDate);
 //Generate TimeBlocks
 generateTimeBlocks();
-checkLocalStorage();
 //listen for request to save
 timeBlockCont.on('click', function (e) {
     if (e.target.classList.contains('clickEvent')) {
